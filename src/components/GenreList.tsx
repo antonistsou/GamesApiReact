@@ -5,7 +5,7 @@ import { Text } from '@chakra-ui/react';
 
 interface Props {
     onSelect: (genre: Genre) => void;
-    selectedGenre: Genre | null;
+    selectedGenre?: number;
 }
 
 const GenreList = ({ selectedGenre, onSelect }: Props) => {
@@ -18,9 +18,9 @@ const GenreList = ({ selectedGenre, onSelect }: Props) => {
         <>
             <Heading fontSize='xl' > Genres</Heading>
             <List>
-                {data.map((genre) => (
+                {data?.results.map((genre) => (
                     <ListItem key={genre.id} paddingY='5px'>
-                        <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} fontSize='md' variant={'ghost'} onClick={() => onSelect(genre)}>
+                        <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === selectedGenre ? 'bold' : 'normal'} fontSize='md' variant={'ghost'} onClick={() => onSelect(genre)}>
                             <HStack>
                                 <Image objectFit='cover' borderRadius={5} boxSize='32px'
                                     src={getCroppedImageUrl(genre.image_background)}></Image>

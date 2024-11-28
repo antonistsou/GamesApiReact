@@ -1,19 +1,19 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
+import useGameQueryStore from '../store'
 
-interface Props {
-    onSearch: (searchText: string) => void;
-}
+//s* selecter to render the componet only when this value changes 
 
-const SearcInput = ({ onSearch }: Props) => {
+const SearcInput = () => {
+    const setSearchText = useGameQueryStore(s => s.setSearchText);
     const ref = useRef<HTMLInputElement>(null);
 
     return (
         <>
             <form onSubmit={(event) => {
                 event.preventDefault();
-                if (ref.current) onSearch(ref.current.value);
+                if (ref.current) setSearchText(ref.current.value);
 
             }}>
                 <InputGroup>

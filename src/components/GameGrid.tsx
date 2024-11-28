@@ -2,16 +2,11 @@ import { Button, SimpleGrid, Spinner } from "@chakra-ui/react";
 import useGames from "../hooks/useGames"
 import Cards from "./Cards";
 import GameSkeleton from "./GameSkeleton";
-import { GameQuery } from "../App";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface Props {
-    gameQuery: GameQuery;
-}
-
 //Fetch Data from Rawg.io
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
 
     const {
         data,
@@ -19,7 +14,7 @@ const GameGrid = ({ gameQuery }: Props) => {
         isLoading,
         isFetchingNextPage,
         fetchNextPage,
-        hasNextPage } = useGames(gameQuery);
+        hasNextPage } = useGames();
 
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const fetchGamesCount = data?.pages

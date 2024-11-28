@@ -4,8 +4,9 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './index.css'
-import App from './App.tsx'
 import theme from './theme.ts'
+import { RouterProvider } from 'react-router-dom'
+import router from './routing/routes.tsx'
 
 //to retup react Query
 //managing and caching react query
@@ -17,7 +18,7 @@ createRoot(document.getElementById('root')!).render(
       <ColorModeScript initialColorMode={theme.config.initialColorMod}>
       </ColorModeScript>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RouterProvider router={router}></RouterProvider>
         <ReactQueryDevtools></ReactQueryDevtools>
       </QueryClientProvider>
     </ChakraProvider>

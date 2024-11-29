@@ -1,7 +1,10 @@
-import { useParams } from "react-router-dom"
+import { GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
-import { Heading, HStack, Img, Spinner, Text } from "@chakra-ui/react";
-import getCroppedImageUrl from "../services/image-url";
+import GameScreenShots from "../components/GameScreenShots";
+import GameTrailer from "../components/GameTrailer";
+import ExpandableBtn from "../components/ExpandableBtn";
 
 const GameDetailPage = () => {
 
@@ -14,11 +17,17 @@ const GameDetailPage = () => {
 
     return (
         <>
-            <Heading textAlign={'center'}>{data.name}</Heading>
-            <HStack>
-                <Img src={getCroppedImageUrl(data.background_image)}></Img>
-                <Text>{data.description_raw}</Text>
-            </HStack>
+            <Heading textAlign={'center'}>{data.name}</Heading><hr></hr>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+                <GridItem>
+                    <GameAttributes data={data}></GameAttributes>
+                    <ExpandableBtn>{data.description_raw}</ExpandableBtn>
+                </GridItem>
+                <GridItem>
+                    <GameTrailer gameId={data.id}></GameTrailer>
+                    <GameScreenShots gameId={data.id}></GameScreenShots>
+                </GridItem>
+            </ SimpleGrid>
         </>
     )
 }
